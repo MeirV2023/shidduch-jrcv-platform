@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Презентация проекта SHIDDUCH — JRCV Вена</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap');
+
+    @page {
+      size: 1600px 900px;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #2B1709;
+      background: #FAF3E8;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .slide {
+      width: 1600px;
+      height: 900px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 25%, #FDF9F3 0%, #F7EBDA 65%, #EFE0C8 100%);
+      padding: 44px 64px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1.5px solid rgba(198, 147, 58, 0.35);
+      border-radius: 24px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid rgba(198, 147, 58, 0.35);
+      padding-bottom: 14px;
+      z-index: 2;
+    }
+
+    .slide-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-brand img {
+      width: 42px;
+      height: 42px;
+    }
+
+    .slide-brand-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #3A2210;
+    }
+
+    .slide-tag {
+      background: linear-gradient(180deg, #FDF8F0 0%, #F2E3CA 100%);
+      border: 1px solid #D7B988;
+      color: #5A3B1B;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 999px;
+    }
+
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 2;
+      padding: 18px 0;
+    }
+
+    .slide-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #2B1709;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .slide-subtitle {
+      font-size: 17px;
+      color: #5C4228;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .slide-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(198, 147, 58, 0.28);
+      padding-top: 10px;
+      font-size: 13px;
+      color: #6E5336;
+      z-index: 2;
+    }
+
+    /* Cards & Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(253, 249, 242, 0.96) 0%, rgba(246, 236, 220, 0.96) 100%);
+      border: 1.5px solid #E5D2B5;
+      border-radius: 20px;
+      padding: 20px 24px;
+      box-shadow: 0 8px 22px rgba(100, 65, 20, 0.06);
+    }
+
+    .card-gold {
+      background: linear-gradient(180deg, #FDF6E9 0%, #F2DFC0 100%);
+      border: 1.5px solid #C8963E;
+    }
+
+    .card h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 25px;
+      font-weight: 700;
+      color: #2B1709;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p, .card li {
+      font-size: 14.5px;
+      line-height: 1.48;
+      color: #3D2814;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .pill-badge {
+      display: inline-block;
+      background: linear-gradient(180deg, #CB9841 0%, #A4701E 100%);
+      color: #FFF;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    /* Tables */
+    table.comp-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #FCF8F2;
+      border: 1.5px solid #DFC9A6;
+      border-radius: 18px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    table.comp-table th {
+      background: linear-gradient(180deg, #C6933A 0%, #A36F1D 100%);
+      color: #FFFFFF;
+      text-align: left;
+      padding: 13px 16px;
+      font-weight: 600;
+      font-size: 14.5px;
+    }
+
+    table.comp-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #EAD9BF;
+      color: #382310;
+      vertical-align: top;
+      line-height: 1.4;
+    }
+
+    table.comp-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    table.comp-table tr:nth-child(even) td {
+      background: rgba(244, 232, 213, 0.45);
+    }
+
+    .mockup-frame {
+      border-radius: 18px;
+      border: 2px solid #D5B580;
+      box-shadow: 0 14px 34px rgba(80, 50, 12, 0.16);
+      overflow: hidden;
+      background: #FAF3E8;
+    }
+
+    .mockup-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =====================================================================
+       SLIDE 1: COVER SLIDE
+       ===================================================================== -->
+  <section class="slide" style="background-image: linear-gradient(90deg, rgba(250,243,232,0.96) 0%, rgba(250,243,232,0.88) 48%, rgba(250,243,232,0.3) 100%), url('assets/hero-bg.png'); background-size: cover; background-position: center;">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH • JRCV ВЕНА</span>
+      </div>
+      <span class="slide-tag">Протокол совещания от 04.11.2026 • Концепция и Архитектура 2.0</span>
+    </div>
+
+    <div class="slide-content" style="display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 36px; align-items: center;">
+      <div>
+        <span class="pill-badge">ФЛАГМАНСКИЙ ПРОЕКТ ОБЩИНЫ JRCV</span>
+        <h1 style="font-family:'Cormorant Garamond',serif; font-size:58px; font-weight:700; line-height:1.06; color:#2B1709; margin-bottom:16px;">
+          Интеллектуальная экосистема шидуха для создания семьи
+        </h1>
+        <p style="font-size:19px; line-height:1.45; color:#4A331C; margin-bottom:22px;">
+          Единая технологическая платформа (Desktop Web + Mobile PWA), объединяющая алгоритмический анализ совместимости, защиту репутации общины и традиционный еврейский шидух с шадханом.
+        </p>
+
+        <div class="card" style="padding:16px 20px; margin-bottom:14px;">
+          <div style="font-size:13.5px; font-weight:700; color:#9E6B18; text-transform:uppercase; margin-bottom:6px;">
+            Рабочая группа проекта (Совещание 04 ноября 2026 г., 14:00–15:00, JRCV):
+          </div>
+          <div style="font-size:14.5px; font-weight:500; color:#2B1709; line-height:1.45;">
+            Дина Коломойцева • Анна Крисс • Анна Маркова • Анна Демченко • Инна Штернова • Эстер Ткачман • Меир Врубель
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="slide-tag">🎯 Точный скоринг (0–100%)</span>
+          <span class="slide-tag">🛡️ Галахическая верификация</span>
+          <span class="slide-tag">🔒 Приватность и GDPR (Ст. 9)</span>
+          <span class="slide-tag">🌍 Вена + DACH + Израиль</span>
+        </div>
+      </div>
+
+      <div class="mockup-frame">
+        <img src="shiduch/shidux_bez_registracii.png" alt="Главная страница SHIDDUCH" />
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SHIDDUCH Platform • Интеллектуальная экосистема для русскоязычных евреев</span>
+      <span>Слайд 1 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 2: ЦЕЛЬ ПРОЕКТА И ОСНОВНАЯ КОНЦЕПЦИЯ (ПО ПРОТОКОЛУ СОВЕЩАНИЯ)
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Раздел 1–2 Протокола совещания • Миссия и Двухконтурная модель</span>
+    </div>
+
+    <div class="slide-content">
+      <h2 class="slide-title">Цель проекта и двухконтурная архитектура платформы</h2>
+      <p class="slide-subtitle">
+        Главный принцип: не просто знакомство двух людей, а осознанный подбор пары с перспективой создания крепкой еврейской семьи.
+      </p>
+
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="card card-gold">
+          <span class="pill-badge">КОНТУР А • ДЛЯ МОЛОДЁЖИ И ТРАДИЦИОННЫХ СЕМЕЙ</span>
+          <h3>💻 А. Современный приватный шидух</h3>
+          <ul>
+            <li><strong>Индивидуальный подбор партнёров</strong> с использованием интеллектуальных алгоритмов (3–5 персональных рекомендаций в день, без открытой «витрины»).</li>
+            <li><strong>Персональные рекомендации</strong> на основе индекса совместимости с детальным объяснением причин совпадения и зон внимания.</li>
+            <li><strong>Контролируемое раскрытие информации:</strong> 3 режима приватности фото (включая Blur-размытие до взаимного согласия) и скрытие фамилии.</li>
+            <li><strong>Поддержка на расстоянии клика:</strong> прямой чат при совпадении + кнопка «Позвать шадхана / ментора» в любой момент.</li>
+          </ul>
+        </div>
+
+        <div class="card card-gold">
+          <span class="pill-badge">КОНТУР Б • КЛАССИЧЕСКИЙ ШАДХАНУТ 2.0</span>
+          <h3>🤝 Б. Традиционный еврейский шидух</h3>
+          <ul>
+            <li><strong>Подбор кандидатов с участием шадхана JRCV:</strong> личное сопровождение на всех этапах — от знакомства до помолвки.</li>
+            <li><strong>Анонимизированные резюме:</strong> просмотр ценностей, образования и семейных ожиданий без публикации фото и имён.</li>
+            <li><strong>Учёт галахических требований:</strong> автоматическая проверка ограничений (Коэн, Гет, статус родителей) и работа с поручителями (Бирурим).</li>
+            <li><strong>Подключение шадхана на «горячем этапе»:</strong> шадхан не тратит ночи на ручной перебор базы, а получает готовые топ-совпадения 80%+.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>🔗 Единая база данных</h3>
+          <p>Оба направления используют общую верифицированную базу кандидатов Вены, региона DACH и Израиля, позволяя гибко переключать режим сопровождения.</p>
+        </div>
+        <div class="card">
+          <h3>👪 Ролевая модель семьи</h3>
+          <p>Легализация участия родителей и старших родственников (ашкеназские, бухарские, грузинские, горские семьи) через специальный режим «Семейный профиль».</p>
+        </div>
+        <div class="card">
+          <h3>🏛️ Щит общины JRCV</h3>
+          <p>Высокое доверие за счёт эгиды общины JRCV, участия раввинов при галахической проверке и интеграции с офлайн-жизнью еврейской Вены.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Протокол совещания JRCV от 04.11.2026 • Единая база с двумя форматами взаимодействия</span>
+      <span>Слайд 2 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 3: СРАВНЕНИЕ С МИРОВЫМИ КОНКУРЕНТАМИ
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Аналитика рынка • Разбор существующих шидух-платформ</span>
+    </div>
+
+    <div class="slide-content">
+      <h2 class="slide-title">Сравнение с конкурентами: что работает, а что ломает конверсию</h2>
+      <p class="slide-subtitle">
+        Анализ 5 ведущих мировых платформ позволил взять лучшие механики и устранить барьеры, из-за которых распадается 80% воронки.
+      </p>
+
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="width:20%;">Платформа и категория</th>
+            <th style="width:24%;">Механика работы</th>
+            <th style="width:26%;">Сильные стороны (Что перенимаем)</th>
+            <th style="width:30%;">Слабые места (Как улучшаем в SHIDDUCH)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SawYouAtSinai / Shidduch.im</strong><br/><span style="font-size:12.5px; color:#6E5336;">Классический шадханут</span></td>
+            <td>Анкета видна только шадханам. Участник ждёт ручного подбора варианта.</td>
+            <td>Высокое доверие религиозного сектора; проверка через поручителей (References).</td>
+            <td>Шадханы помнят лишь 10–15% «ярких» анкет, 80% базы лежит мёртвым грузом. <strong>Решение: ИИ-очередь Smart Match 80%+ для шадханов.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Canopy Shidduchim</strong><br/><span style="font-size:12.5px; color:#6E5336;">Анонимный гибрид</span></td>
+            <td>Участники смотрят анонимные карточки без фото. При двойном «Да» подключается шадхан.</td>
+            <td>Снятие рутины с шадхана; правило <strong>72 часов на ответ</strong> против гостинга.</td>
+            <td>Запрет на прямой чат отпугивает светскую и традиционную молодёжь. <strong>Решение: Двухконтурный режим (Контур А с чатом + Контур Б).</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Yismach / ZUUG / Meheiro</strong><br/><span style="font-size:12.5px; color:#6E5336;">CRM для резюме и родителей</span></td>
+            <td>Стандартизация «шидух-резюме», доступ для родителей и проверенных шадханов.</td>
+            <td>Удобный инструмент для родителей; отказ от хаотичных PDF в WhatsApp-чатах.</td>
+            <td>Сухой формат «резюме на работу», теряется живая личность. <strong>Решение: интерактивные теги характера и триггер-вопросы.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>JWed</strong><br/><span style="font-size:12.5px; color:#6E5336;">Прямой поиск</span></td>
+            <td>Открытый каталог анкет по фильтрам, обязательные фото, прямое общение.</td>
+            <td>Свобода действий, быстрый старт общения без посредников.</td>
+            <td><strong>«Страх витрины» в Вене:</strong> люди не хотят вешать фото на обозрение всех знакомых. <strong>Решение: закрытые подборки и Blur-фото.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>ShidduchShuk</strong><br/><span style="font-size:12.5px; color:#6E5336;">Логистика свиданий</span></td>
+            <td>Справочник мест для встреч (отели, кошерные кафе, расстояния).</td>
+            <td>Практическая помощь после того, как пара уже совпала.</td>
+            <td>Существует отдельно от сайта. <strong>Решение: встроенный JRCV Date Concierge прямо в карточке совпавшей пары + QR на кофе.</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="slide-footer">
+      <span>Конкурентный анализ JRCV • Синтез лучших мировых практик для Вены и Европы</span>
+      <span>Слайд 3 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 4: ВИЗУАЛЬНАЯ КОНЦЕПЦИЯ — СТРАНИЦА БЕЗ РЕГИСТРАЦИИ
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Дизайн и UX • Компьютерная версия (Страница без регистрации)</span>
+    </div>
+
+    <div class="slide-content" style="display:grid; grid-template-columns: 1.28fr 0.72fr; gap: 28px; align-items: center;">
+      <div class="mockup-frame">
+        <img src="shiduch/shidux_bez_registracii.png" alt="Страница без регистрации" />
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="card card-gold">
+          <h3>✨ Фирменный стиль и доверие с первой секунды</h3>
+          <p>Тёплая золотисто-кремовая палитра Иерусалима, благородная антиква и атмосфера семейной ценности вместо холодного интерфейса дейтинг-сайтов.</p>
+        </div>
+
+        <div class="card">
+          <h3>🧭 Понятная навигация на входе</h3>
+          <ul>
+            <li>Чёткое разделение на <strong>Современный приватный шидух</strong> и <strong>Традиционный шидух с шадханом</strong> прямо на первом экране.</li>
+            <li>4 ключевых гарантии: Проверенные анкеты, Конфиденциальность, Умный подбор, Поддержка шадхана.</li>
+            <li>Наглядная схема из 3 шагов: 1. Заполните анкету → 2. Получите предложения → 3. Познакомьтесь и постройте семью.</li>
+            <li>Мультиязычный переключатель (RU / DE / EN / HE) с приоритетом русского языка.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>⚡ Высокая конверсия в регистрацию</h3>
+          <p>Отсутствие пугающих форм из 80 полей на входе: мягкий старт за 3 минуты переводит посетителя в верифицированный контур общины.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Реализованный веб-интерфейс (shidux_bez_registracii.png) • Адаптивная вёрстка + PWA</span>
+      <span>Слайд 4 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 5: ЛИЧНЫЙ КАБИНЕТ КАНДИДАТА (КОМПЬЮТЕРНАЯ ВЕРСИЯ)
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Дизайн и UX • Компьютерная версия личного кабинета (shidoz_vhod.png)</span>
+    </div>
+
+    <div class="slide-content" style="display:grid; grid-template-columns: 0.72fr 1.28fr; gap: 28px; align-items: center;">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="card card-gold">
+          <h3>🏠 Рабочее пространство кандидата</h3>
+          <p>Продуманный дашборд объединяет рекомендации алгоритма, предложения от шадхана, статус верификации и управление полнотой анкеты.</p>
+        </div>
+
+        <div class="card">
+          <h3>🔄 Мгновенное переключение режимов</h3>
+          <ul>
+            <li>В верхней панели доступны вкладки <strong>«Современный шидух»</strong> и <strong>«Традиционный шидух»</strong>.</li>
+            <li>Карточки кандидатов (Рахель 95%, Мириам 92%, Эстер 89%, Лея 87%) сразу показывают процент совместимости, город, профессию и ключевые ценности.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🛡️ Три независимых статуса проверки</h3>
+          <ul>
+            <li><strong>Личность подтверждена</strong> (паспорт / селфи / анти-дубли).</li>
+            <li><strong>Данные проверены</strong> (полнота анкеты, семейный статус).</li>
+            <li><strong>Еврейский статус проверен</strong> (отдельная галахическая отметка раввина, не подменяемая другими бейджами).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mockup-frame">
+        <img src="shiduch/shidoz_vhod.png" alt="Личный кабинет кандидата на ПК" />
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Личный кабинет кандидата (shidoz_vhod.png) • Индивидуальный рейтинг совместимости</span>
+      <span>Слайд 5 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 6: МОБИЛЬНОЕ PWA-ПРИЛОЖЕНИЕ (ВСЕ ЭКРАНЫ ПЛАТФОРМЫ)
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Мобильная экосистема • Progressive Web App (pwa_1.png)</span>
+    </div>
+
+    <div class="slide-content" style="display:grid; grid-template-columns: 1.32fr 0.68fr; gap: 24px; align-items: center;">
+      <div class="mockup-frame">
+        <img src="shiduch/pwa_1.png" alt="Экраны мобильного PWA-приложения" />
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div class="card card-gold">
+          <h3>📱 Почему PWA на старте — лучшее решение</h3>
+          <p>Открывается по ссылке, устанавливается иконкой на главный экран iPhone и Android за 1 клик без ожидания модерации App Store и комиссий 30%.</p>
+        </div>
+
+        <div class="card">
+          <h3>🔍 Ключевые экраны (на иллюстрации слева):</h3>
+          <ul>
+            <li><strong>Онбординг и установка PWA</strong> с мгновенными пуш/Telegram-уведомлениями.</li>
+            <li><strong>Выбор роли:</strong> «Регистрируюсь лично» или «Семейный профиль (родитель/родственник)».</li>
+            <li><strong>Детальная совместимость (93%):</strong> чек-лист совпадений + блок «Обратите внимание» (прозрачное объяснение компромиссов).</li>
+            <li><strong>Разделение фильтров:</strong> вкладки «Обязательные» и «Предпочтительные».</li>
+            <li><strong>Кабинет «Мой шадхан» (Рав Ицхак):</strong> чат, видео-встреча и персональные предложения.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Полный цикл экранов PWA-приложения (pwa_1.png) • Умный подбор и сопровождение шадхана</span>
+      <span>Слайд 6 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 7: МНОГОУРОВНЕВАЯ АНКЕТА КАНДИДАТА 2.0 (pwa_regisration.png)
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Раздел 3 Протокола • Архитектура многоуровневой анкеты (pwa_regisration.png)</span>
+    </div>
+
+    <div class="slide-content" style="display:grid; grid-template-columns: 0.68fr 1.32fr; gap: 24px; align-items: center;">
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div class="card card-gold">
+          <h3>📝 6 разделов (12 логических блоков в 3 шага)</h3>
+          <p>Вместо пугающей анкеты на 80 текстовых полей — прогрессивный онбординг с интерактивными ползунками и тегами за 5–6 минут.</p>
+        </div>
+
+        <div class="card">
+          <h3>Структура разделов анкеты:</h3>
+          <ul>
+            <li><strong>1. Личные данные:</strong> имя, скрытая фамилия, возраст, рост (см), география (Вена/DACH/Израиль), языки, образование.</li>
+            <li><strong>2. Еврейская идентичность:</strong> по матери/отцу/гиюр, статус Коэн/Леви/Исраэль, корни (ашкеназские, бухарские, горские, грузинские).</li>
+            <li><strong>3. Религиозный образ жизни:</strong> Шаббат, Кашрут, синагога, Тора + вектор будущего дома.</li>
+            <li><strong>4. Семья:</strong> статус, проверка Гета при разводе, дети, распределение ролей и образование детей.</li>
+            <li><strong>5. Личность и характер:</strong> ползунки темперамента, теги характера и увлечений.</li>
+            <li><strong>6. Пожелания («Хотелки»):</strong> разделение на <em>Обязательные</em>, <em>Желательные</em> и <em>Второстепенные</em>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mockup-frame">
+        <img src="shiduch/pwa_regisration.png" alt="Экраны анкеты кандидата" />
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Многоуровневая анкета кандидата (pwa_regisration.png) • Повышение точности подбора в 3–5 раз</span>
+      <span>Слайд 7 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 8: ИНТЕЛЛЕКТУАЛЬНЫЙ АЛГОРИТМ ПОДБОРА (MATCHING ENGINE)
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Раздел 4–5 Протокола • Математическая модель совместимости</span>
+    </div>
+
+    <div class="slide-content">
+      <h2 class="slide-title">Детерминированный двухэтапный алгоритм совместимости</h2>
+      <p class="slide-subtitle">
+        В отличие от дейтинг-приложений (рейтинг Эло), алгоритм SHIDDUCH сочетает галахические стоп-факторы и взвешенную матрицу из 100 баллов.
+      </p>
+
+      <div class="grid-2" style="gap:24px;">
+        <div class="card">
+          <span class="pill-badge">ЭТАП 1 • БИНАРНЫЙ ОТСЕКАТЕЛЬ (PASS / BLOCK)</span>
+          <h3>🛑 Жёсткие стоп-факторы (Hard Filters)</h3>
+          <ul>
+            <li><strong>Верификация и пол:</strong> допускаются только проверенные кандидаты противоположного пола.</li>
+            <li><strong>Галахический фильтр Коэна:</strong> если у мужчины статус «Коэн», алгоритм автоматически исключает анкеты со статусом «В разводе», «Гиюр» или «Отец — нееврей».</li>
+            <li><strong>Проверка наличия Гета:</strong> разведённые кандидаты после хупы без оформленного Гета направляются на консультацию раввина до допуска к подбору.</li>
+            <li><strong>Матрица географии и релокации:</strong> сопоставление городов (Вена ↔ Мюнхен/Цюрих/Израиль) с готовностью хотя бы одной стороны к переезду.</li>
+            <li><strong>Умный допуск (Soft Margin ±2 года / ±3 см):</strong> если кандидат выходит за фильтр на 1 год или 2 см, но скоринг ценностей > 85%, система покажет пару с пояснением!</li>
+          </ul>
+        </div>
+
+        <div class="card card-gold">
+          <span class="pill-badge">ЭТАП 2 • МАТРИЦА СОВМЕСТИМОСТИ (100 БАЛЛОВ)</span>
+          <h3>📊 Взвешенный скоринг (Weighted Scoring)</h3>
+          <ul>
+            <li><strong>1. Религиозный вектор «Сейчас vs Через 5 лет» — 35 баллов:</strong> оценка 4 шкал (Шаббат, Кашрут, Тора, Чистота семьи). Главный вес (25 из 35) — совпадение вектора будущего дома.</li>
+            <li><strong>2. Модель семьи и жизненные планы — 25 баллов:</strong> горизонт свадьбы (10 б.), финансово-ролевая модель семьи (10 б.), еврейская школа для детей (5 б.).</li>
+            <li><strong>3. Культурный код и языки — 15 баллов:</strong> общий язык на уровне Fluent/Native (RU/DE/HE/EN — 8 б.) и семейные традиции/община (7 б.).</li>
+            <li><strong>4. Психотип, образование и интересы — 15 баллов:</strong> уровень образования (5 б.), темперамент и досуг (10 б.).</li>
+            <li><strong>5. Индекс вовлечённости (Activity Score) — 10 баллов:</strong> полнота профиля, рекомендации и скорость ответа + <strong>автокалибровка по причинам отказов</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Интеллектуальный алгоритм SHIDDUCH • Анализ «хотелок», компромиссов и скрытых совпадений</span>
+      <span>Слайд 8 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 9: ГАЛАХИЧЕСКАЯ ЛОГИКА, ВЕРИФИКАЦИЯ И ЗАЩИТА GDPR
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Раздел 6–8 Протокола • Галахическая проверка, 6 этапов верификации и GDPR</span>
+    </div>
+
+    <div class="slide-content">
+      <h2 class="slide-title">Галахическая логика, 6 этапов верификации и безопасность GDPR</h2>
+      <p class="slide-subtitle">
+        Алгоритм не выносит галахических решений самостоятельно — он структурирует данные и передаёт сложные случаи компетентному раввину JRCV.
+      </p>
+
+      <div class="grid-3" style="margin-bottom:20px;">
+        <div class="card card-gold">
+          <span class="pill-badge">СПОСОБ 1 • 1 КЛИК</span>
+          <h3>🟢 «Зелёный коридор JRCV»</h3>
+          <p>Для действующих членов общины JRCV в Вене, которых лично знает раввин или представитель общины. Мгновенное подтверждение модератором.</p>
+        </div>
+
+        <div class="card card-gold">
+          <span class="pill-badge">СПОСОБ 2 • БИРУРИМ</span>
+          <h3>📞 Институт поручителей</h3>
+          <p>Указание контакта раввина своей общины (в Европе, СНГ, Израиле) или двух проверенных членов общины для подтверждения репутации и статуса.</p>
+        </div>
+
+        <div class="card card-gold">
+          <span class="pill-badge">СПОСОБ 3 • ЗАКРЫТЫЙ СЕЙФ</span>
+          <h3>🔒 Документальная проверка</h3>
+          <p>Загрузка Ктубы родителей или справки из раввината в зашифрованный сейф (видит только главный раввин/модератор, после проверки файл автоматически удаляется).</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>🛡️ 6 этапов допуска кандидата к базе</h3>
+          <p>
+            <strong>Этап 1:</strong> Регистрация (SMS/Telegram + Email + правила) →
+            <strong>Этап 2:</strong> Подтверждение личности и анти-дубли →
+            <strong>Этап 3:</strong> Проверка семейного статуса (Гет) →
+            <strong>Этап 4:</strong> Подтверждение еврейского статуса раввином →
+            <strong>Этап 5:</strong> Модерация полноты анкеты →
+            <strong>Этап 6:</strong> Присвоение независимых бейджей и активация подбора.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>⚖️ Юридическая защита в Австрии и ЕС (Art. 9 GDPR)</h3>
+          <p>
+            Сведения о религии и происхождении относятся к Особой категории данных (Ст. 9 GDPR). В платформу встроено <strong>Явное согласие (Explicit Consent)</strong> на обработку данных религиозной организацией для целей создания семьи, защита фото от скачивания и автоудаление документов.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Безопасность и Галахический регламент JRCV • Независимые уровни подтверждения</span>
+      <span>Слайд 9 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 10: КАБИНЕТ ШАДХАНА (CRM И КАНБАН-ДОСКА)
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Раздел 9 Протокола • Автоматизация работы Шадханов и Администраторов</span>
+    </div>
+
+    <div class="slide-content">
+      <h2 class="slide-title">Рабочий процесс (Workflow) и CRM-панель Шадхана JRCV</h2>
+      <p class="slide-subtitle">
+        Алгоритм выполняет черновую аналитику (сужает выбор из 500 анкет до топ-5), а шадхан добавляет мудрость, эмпатию и знание семей.
+      </p>
+
+      <table class="comp-table" style="margin-bottom:20px;">
+        <thead>
+          <tr>
+            <th>1. Новички (Ждут звонка)</th>
+            <th>2. Идеи ИИ (Топ-пары 80%+)</th>
+            <th>3. Отправлено (Таймер 72ч)</th>
+            <th>4. Взаимный интерес / Бирурим</th>
+            <th>5. Первое свидание</th>
+            <th>6. Встречаются (Freeze Mode)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10-минутный велком-звонок шадхана, проставление закрытых тегов в <em>Private Shadchan Notes</em>.</td>
+            <td>Очередь <em>Smart Match Queue</em> со Split-Screen сравнением двух анкет (совпадения и зоны внимания).</td>
+            <td>Последовательная (Sequential) или синхронная подача предложения с личным комментарием шадхана.</td>
+            <td>Открытие фото (с защитой от скриншотов) и контактов поручителей, напоминание через 4 дня.</td>
+            <td>Назначение встречи, отправка гида <em>JRCV Date Concierge</em>, триггер-бот наутро в 11:00.</td>
+            <td>2+ свидание: профили временно скрыты от других шадханов и выдачи до разморозки или <strong>Мазаль Тов!</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>🔒 Секретное поле Шадхана</h3>
+          <p>Блок <strong>Private Shadchan Notes</strong> (не виден кандидатам) с закрытыми тегами: <em>#мягкий_характер, #сильное_влияние_мамы, #настроен_на_свадьбу_за_полгода</em>.</p>
+        </div>
+        <div class="card">
+          <h3>📨 Последовательная подача</h3>
+          <p>Защита от выгорания: предложение сначала уходит более избирательному кандидату А, и только после его «Да» отправляется стороне Б.</p>
+        </div>
+        <div class="card">
+          <h3>🌅 Бот «Утро после свидания»</h3>
+          <p>Наутро после встречи бот приватно спрашивает каждого участника о впечатлениях. При отказе уведомление идёт шадхану для бережного ответа.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>CRM-система Шадхана JRCV • Удобная работа за 20 минут в день с ноутбука или смартфона</span>
+      <span>Слайд 10 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 11: 6 КИЛЛЕР-ФИЧ ЭКОСИСТЕМЫ JRCV ВЕНА
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Уникальные конкурентные преимущества • 6 Киллер-фич JRCV</span>
+    </div>
+
+    <div class="slide-content">
+      <h2 class="slide-title">6 инноваций, которые выделяют SHIDDUCH JRCV на мировом уровне</h2>
+      <p class="slide-subtitle">
+        Инструменты, превращающие цифровой сайт в живую, тёплую и самоокупаемую общинную экосистему.
+      </p>
+
+      <div class="grid-3" style="gap:18px;">
+        <div class="card card-gold">
+          <h3>1. Матрица «Сейчас vs Через 5 лет»</h3>
+          <p>Визуальные ползунки по Шаббату, Кашруту, Торе и стилю жизни в двух точках времени. Решает главную причину разрывов — несовпадение динамики духовного роста.</p>
+        </div>
+
+        <div class="card card-gold">
+          <h3>2. Правило 72 часов (Анти-гостинг)</h3>
+          <p>На каждое предложение даётся 72 часа для ответа. При пропуске 3 предложений подряд профиль автоматически переходит в «Спящий режим» — в базе 100% активных людей.</p>
+        </div>
+
+        <div class="card card-gold">
+          <h3>3. Хаб «Вена + Европа DACH + Израиль»</h3>
+          <p>Фильтр «Готовность к релокации / переезду в Вену» объединяет русскоязычных евреев Австрии, Германии, Швейцарии, Чехии и Израиля, увеличивая базу в 10 раз.</p>
+        </div>
+
+        <div class="card">
+          <h3>4. Гид JRCV Date Concierge ☕</h3>
+          <p>В экран совпавшей пары встроен гид по кошерным кафе Леопольдштадта и уютным лобби 1-го района Вены + генерация <strong>QR-кода на два бесплатных кофе от JRCV</strong>.</p>
+        </div>
+
+        <div class="card">
+          <h3>5. Интеграция с Шаббатами (Event Mode)</h3>
+          <p>Перед мероприятиями и Шаббатами JRCV участники отмечают «Я приду». Позволяет выразить симпатию человеку, которого встретил на вечере общины, но постеснялся подойти.</p>
+        </div>
+
+        <div class="card">
+          <h3>6. Экономика благодарности (Pay-it-Forward)</h3>
+          <p>Бесплатный вход для молодёжи + счётчик свиданий и помолвок на главной и кнопки для родителей и выпускников: «Проспонсировать свидание (25 €)» и «Внести Шадханут».</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>6 Киллер-фич платформы JRCV Вена • От онлайн-знакомства к реальному свиданию в общине</span>
+      <span>Слайд 11 из 12</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 12: ДОРОЖНАЯ КАРТА ЗАПУСКА И СЛЕДУЮЩИЕ ШАГИ
+       ===================================================================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <div class="slide-brand">
+        <img src="assets/logo-star.png" alt="Logo" />
+        <span class="slide-brand-name">SHIDDUCH</span>
+      </div>
+      <span class="slide-tag">Раздел 10–12 Протокола • План запуска MVP и следующие шаги</span>
+    </div>
+
+    <div class="slide-content">
+      <h2 class="slide-title">Дорожная карта реализации проекта и следующие шаги</h2>
+      <p class="slide-subtitle">
+        Поэтапный план запуска без затягивания сроков с решением проблемы «пустого ресторана» на старте.
+      </p>
+
+      <div class="grid-4" style="margin-bottom:22px;">
+        <div class="card card-gold">
+          <span class="pill-badge">ЭТАП 1 • НЕДЕЛИ 1–2</span>
+          <h3>Фундамент и UI/PWA</h3>
+          <p>Утверждение ТЗ, развёртывание компьютерной и мобильной PWA-версии, база данных PostgreSQL и защита GDPR (Ст. 9).</p>
+        </div>
+
+        <div class="card card-gold">
+          <span class="pill-badge">ЭТАП 2 • НЕДЕЛИ 3–4</span>
+          <h3>Анкета 2.0 и Верификация</h3>
+          <p>Запуск 3-шаговой анкеты с условной галахической логикой, подключение «Зелёного коридора JRCV» и сейфа раввина.</p>
+        </div>
+
+        <div class="card card-gold">
+          <span class="pill-badge">ЭТАП 3 • НЕДЕЛИ 5–6</span>
+          <h3>Алгоритм и CRM Шадхана</h3>
+          <p>Внедрение 100-балльного скоринга, Канбан-доски шадхана, правил 72ч, Freeze Mode и интеграции Telegram/WhatsApp-бота.</p>
+        </div>
+
+        <div class="card card-gold">
+          <span class="pill-badge">ЭТАП 4 • СТАРТ БАЗЫ</span>
+          <h3>Предрегистрация 50+50</h3>
+          <p>Закрытый сбор первых 50 мужских и 50 женских верифицированных анкет перед открытием алгоритмического подбора.</p>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex; align-items:center; justify-content:space-between; padding:22px 30px;">
+        <div>
+          <h3 style="margin-bottom:4px;">Готовность к запуску: интерактивный прототип уже развёрнут</h3>
+          <p>Компьютерная и PWA-версия главной страницы, личного кабинета и анкеты 2.0 подготовлены и опубликованы в репозитории проекта.</p>
+        </div>
+        <div style="text-align:right; flex-shrink:0;">
+          <div style="font-size:13px; color:#6E5336; text-transform:uppercase; font-weight:700;">Бюджет разработки MVP</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:700; color:#A4701E;">2 000 €</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SHIDDUCH JRCV • Создаём крепкие еврейские семьи • Ноябрь 2026</span>
+      <span>Слайд 12 из 12</span>
+    </div>
+  </section>
+
+</body>
+</html>

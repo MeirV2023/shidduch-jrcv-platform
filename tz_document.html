@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Техническое задание (ТЗ) и Обоснование стоимости проекта (2 000 €) — SHIDDUCH JRCV</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 8.5mm 12mm 8.5mm 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #2B1709;
+      background: #FAF5EC;
+      font-size: 11px;
+      line-height: 1.38;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .doc-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FAF5EC;
+    }
+
+    .doc-cover-banner {
+      background: linear-gradient(135deg, #FCF8F0 0%, #F2E2C6 100%);
+      border: 2px solid #C8963E;
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .doc-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .doc-brand img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .doc-brand-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #3A2210;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.12;
+      color: #2B1709;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: #2B1709;
+      border-bottom: 1.5px solid #D5B580;
+      padding-bottom: 3px;
+      margin: 11px 0 6px;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #462B12;
+      margin: 6px 0 4px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 5px;
+      color: #382310;
+    }
+
+    ul, ol {
+      padding-left: 18px;
+      margin-bottom: 5px;
+    }
+
+    li {
+      margin-bottom: 2.5px;
+      color: #382310;
+    }
+
+    .meta-box {
+      background: #FCF9F4;
+      border: 1px solid #DFCAA8;
+      border-radius: 10px;
+      padding: 8px 14px;
+      margin-bottom: 8px;
+      font-size: 11px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .box-card {
+      background: #FCF9F4;
+      border: 1px solid #E2CEAF;
+      border-radius: 10px;
+      padding: 9px 12px;
+      break-inside: avoid;
+    }
+
+    .box-card-gold {
+      background: linear-gradient(180deg, #FDF7EC 0%, #F4E3C6 100%);
+      border: 1.5px solid #C8963E;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin: 8px 0;
+      break-inside: avoid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 10px;
+      font-size: 10.8px;
+      background: #FCF9F4;
+      border: 1px solid #D9C19B;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th {
+      background: linear-gradient(180deg, #C6933A 0%, #A36F1D 100%);
+      color: #FFF;
+      text-align: left;
+      padding: 5.5px 8px;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 4.5px 8px;
+      border-bottom: 1px solid #EADAC0;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(244, 232, 213, 0.4);
+    }
+
+    .total-row td {
+      background: #F3E2C3 !important;
+      font-weight: 700;
+      font-size: 13px;
+      color: #2B1709;
+      border-top: 2px solid #C6933A;
+    }
+
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+    }
+
+    .price-badge {
+      background: linear-gradient(180deg, #CB9841 0%, #A16E1B 100%);
+      color: #FFF;
+      padding: 12px 20px;
+      border-radius: 14px;
+      text-align: center;
+      min-width: 185px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="doc-container">
+
+    <!-- HEADER BANNER -->
+    <div class="doc-cover-banner">
+      <div>
+        <div class="doc-brand">
+          <img src="assets/logo-star.png" alt="SHIDDUCH Logo" />
+          <span class="doc-brand-title">SHIDDUCH • JRCV ВЕНА</span>
+        </div>
+        <h1>Техническое задание (ТЗ) на разработку платформы<br/>и Финансово-экономическое обоснование стоимости (2 000 €)</h1>
+        <p style="font-size:13px; color:#5A3E22; margin:0;">
+          Интеллектуальная экосистема еврейского шидуха и создания семьи (Desktop Web + Mobile PWA + CRM Шадхана)
+        </p>
+      </div>
+      <div class="price-badge">
+        <div style="font-size:11px; text-transform:uppercase; opacity:0.9; font-weight:600;">Утверждённый бюджет MVP</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:700; line-height:1.1;">2 000 €</div>
+        <div style="font-size:11px; opacity:0.95;">Фиксированная смета «под ключ»</div>
+      </div>
+    </div>
+
+    <div class="meta-box">
+      <strong>Основание для разработки:</strong> Протокол совещания рабочей группы JRCV от 04 ноября 2026 г. (14:00–15:00) и аналитическая концепция модернизации анкеты и алгоритма (Версия 2.0).<br/>
+      <strong>Состав рабочей группы JRCV:</strong> Дина Коломойцева, Анна Крисс, Анна Маркова, Анна Демченко, Инна Штернова, Эстер Ткачман, Меир Врубель.<br/>
+      <strong>Целевая география:</strong> Вена (Австрия), русскоязычная Европа (регион DACH: Германия, Швейцария, Чехия), Израиль.
+    </div>
+
+    <!-- РАЗДЕЛ 1 -->
+    <h2>1. Назначение и общая концепция системы</h2>
+    <p>
+      <strong>Цель проекта:</strong> создание современной интеллектуальной экосистемы знакомств и построения еврейских семей для русскоязычной еврейской аудитории, объединяющей алгоритмический анализ совместимости, психологическое профилирование и традиционные галахические принципы шидуха.
+    </p>
+    <div class="grid-2">
+      <div class="box-card">
+        <h3>Контур А: Современный приватный шидух</h3>
+        <ul>
+          <li>Закрытый подбор без публичного каталога («витрины»): выдача 3–5 релевантных анкет в день.</li>
+          <li>Индивидуальный расчёт процента совместимости (0–100%) с объяснением причин и возможных компромиссов.</li>
+          <li>3 режима приватности фото (открыто верифицированным / размыто Blur до взаимного интереса / через шадхана).</li>
+          <li>Прямой внутренний чат при взаимном интересе + кнопка экстренного подключения шадхана/ментора.</li>
+        </ul>
+      </div>
+      <div class="box-card">
+        <h3>Контур Б: Традиционный шидух с шадханом 2.0</h3>
+        <ul>
+          <li>Просмотр анонимизированных резюме без публикации фотографий и имён.</li>
+          <li>Автоматическое подключение шадхана общины JRCV при взаимном интересе сторон.</li>
+          <li>Строгий учёт галахических требований, проверка рекомендателей (Бирурим) и закрытое ведение пар.</li>
+          <li>Поддержка «Семейных профилей» (заполнение анкеты родителями или родственниками кандидата).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- РАЗДЕЛ 2 -->
+    <h2>2. Техническая архитектура и стек технологий (PWA-First)</h2>
+    <ul>
+      <li><strong>Формат клиентского приложения:</strong> адаптивное веб-приложение (Desktop Web) + прогрессивное веб-приложение (<strong>PWA — Progressive Web App</strong>) с манифестом (<code>manifest.json</code>) и Service Worker (<code>sw.js</code>) для установки иконкой на главный экран iOS (iPhone) и Android без затрат и задержек публикации в App Store / Google Play.</li>
+      <li><strong>Единая база данных и бэкенд:</strong> реляционная СУБД (PostgreSQL / Supabase / Firebase) с ролевым разграничением доступа (RBAC: Кандидат, Родитель/Родственник, Шадхан направления, Главный администратор / Раввин JRCV).</li>
+      <li><strong>Каналы уведомлений:</strong> Web Push + интеграция с Telegram Bot API / WhatsApp и Email (мгновенные оповещения о новых парах, таймере 72 часов и сообщениях от шадхана).</li>
+      <li><strong>Мультиязычность (i18n):</strong> поддержка 4 языков интерфейса — Русский (основной), Немецкий (DE), Английский (EN), Иврит (HE).</li>
+    </ul>
+
+    <!-- РАЗДЕЛ 3 -->
+    <h2>3. Требования к Многоуровневой Анкете Кандидата 2.0 (Progressive Onboarding)</h2>
+    <p>Для предотвращения оттока пользователей при регистрации 12 логических разделов разбиваются на 3 прогрессивных этапа (время заполнения 5–6 минут) с использованием интерактивных шкал, ползунков и чипсов вместо пустых текстовых полей:</p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%;">Блок анкеты</th>
+          <th style="width:48%;">Состав полей и механика</th>
+          <th style="width:30%;">Умные ветвления и приватность</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>0. Роль на старте</strong></td>
+          <td>Выбор: «Регистрируюсь лично (для себя)» или «Семейный профиль (родитель/родственник помогает кандидату)».</td>
+          <td>Автосмена формулировок вопросов и присвоение бейджа <em>Семейный профиль</em>.</td>
+        </tr>
+        <tr>
+          <td><strong>1–3. Личные данные, география и языки</strong></td>
+          <td>Имя, Фамилия, Пол, Дата рождения, <strong>Рост (см)</strong>, Город (Вена/DACH/Израиль), визовый статус ЕС, готовность к релокации, телефон, языки (RU/DE/EN/HE/Грузинский), поручители (Бирурим).</td>
+          <td>🔒 Фамилия и контакты скрыты до взаимного согласия. 3 режима видимости фотографий.</td>
+        </tr>
+        <tr>
+          <td><strong>4–5. Образование и Еврейская идентичность</strong></td>
+          <td>Уровень образования и сфера. Происхождение (по матери / отец нееврей / гиюр / корни по отцу). Корни семьи (ашкеназские, бухарские, горские, грузинские, сефардские). Принадлежность к общине.</td>
+          <td>Если <em>Пол = Мужской</em> → вопрос о статусе <strong>Коэн / Леви / Исраэль</strong> (для галахического фильтра).</td>
+        </tr>
+        <tr>
+          <td><strong>6. Религиозный вектор («Сейчас и через 5 лет»)</strong></td>
+          <td>Самоопределение + интерактивная матрица (ползунки от 1 до 5 в точках «Я сейчас» и «Дом через 5 лет») по 4 осям: Шаббат, Кашрут, Роль Торы, Законы чистоты семьи.</td>
+          <td>Основа для расчёта 35 баллов главного блока алгоритма совместимости.</td>
+        </tr>
+        <tr>
+          <td><strong>7. Семейное положение и дети</strong></td>
+          <td>Холост / Не замужем, Разведён(а), Вдовец / Вдова. Наличие детей и отношение к планированию семьи.</td>
+          <td>Если <em>Разведён(а)</em> → обязательный вопрос о наличии религиозного развода (<strong>Гет</strong>).</td>
+        </tr>
+        <tr>
+          <td><strong>8–12. Личность, Модель дома и «Хотелки»</strong></td>
+          <td>Теги темперамента и досуга, 3 триггер-вопроса о себе, горизонт брака, финансово-ролевая модель семьи, школа для детей, разделение пожеланий на <strong>Обязательные</strong>, <strong>Желательные</strong> и <strong>Второстепенные</strong>.</td>
+          <td>Явное согласие по Ст. 9 GDPR (религиозные данные в ЕС) + правило 72 часов.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- РАЗДЕЛ 4 -->
+    <h2>4. Алгоритм совместимости (Matching Engine) и Галахическая логика</h2>
+    <div class="grid-2">
+      <div class="box-card">
+        <h3>Этап 1. Жёсткие отсекатели (Hard Filters)</h3>
+        <ul>
+          <li><strong>Галахический фильтр Коэна:</strong> автоматическое исключение невозможных по Галахе союзов (Коэн + разведённая / гиюр / отец-нееврей).</li>
+          <li><strong>Проверка Гета:</strong> блокировка автоподбора при отсутствии Гета после религиозного брака (передача раввину).</li>
+          <li><strong>Матрица релокации:</strong> отсев пар из разных городов, если оба указали «Не готов к переезду».</li>
+          <li><strong>Умный допуск (Soft Margin):</strong> коридор ±2 года и ±3 см от фильтра, если общий скоринг совместимости превышает 85%.</li>
+        </ul>
+      </div>
+      <div class="box-card">
+        <h3>Этап 2. Взвешенный скоринг (100 баллов)</h3>
+        <ul>
+          <li><strong>Религиозный вектор («Сейчас и через 5 лет»):</strong> 35 баллов.</li>
+          <li><strong>Модель семьи и планы на детей:</strong> 25 баллов.</li>
+          <li><strong>Культурный код и общие языки общения:</strong> 15 баллов.</li>
+          <li><strong>Психотип, образование и интересы:</strong> 15 баллов.</li>
+          <li><strong>Индекс вовлечённости (Activity Score):</strong> 10 баллов.</li>
+          <li><strong>Калибровка отказов:</strong> автоматическая корректировка весов при повторяющихся причинах отклонения анкет.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- РАЗДЕЛ 5 -->
+    <h2>5. Многоэтапная верификация (6 этапов) и Кабинет Шадхана (CRM)</h2>
+    <ul>
+      <li><strong>Три независимых статуса подтверждения в профиле:</strong> 1) <em>«Личность подтверждена»</em> (документ + селфи + анти-дубли); 2) <em>«Данные проверены»</em> (модерация полноты и семейного статуса); 3) <em>«Еврейский статус проверен»</em> (через «Зелёный коридор JRCV», поручителей Бирурим или «Закрытый сейф раввина» с автоудалением файлов после проверки по GDPR).</li>
+      <li><strong>Канбан-доска Шадхана (6 колонок):</strong> <em>1. Новички (10-мин велком-звонок и Private Shadchan Notes) → 2. Идеи ИИ (Smart Match 80%+ со Split-Screen сравнением) → 3. Отправлено (Sequential / Simultaneous Pitch, таймер 72ч) → 4. Взаимный интерес / Бирурим → 5. Первое свидание (гид JRCV Date Concierge + бот «Утро после свидания») → 6. Встречаются (Freeze Mode — заморозка анкет) / Мазаль Тов!</em></li>
+    </ul>
+
+    <!-- РАЗДЕЛ 6: ОБОСНОВАНИЕ СТОИМОСТИ 2000 ЕВРО -->
+    <h2>6. Финансово-экономическое обоснование стоимости проекта в 2 000 €</h2>
+
+    <div class="box-card-gold">
+      <h3 style="font-size:15.5px; margin-top:0; color:#2B1709;">💎 Рыночная стоимость аналога в ЕС vs. Специальный бюджет для JRCV Вена (2 000 €)</h3>
+      <p style="margin-bottom:4px;">
+        По расценкам европейских IT-агентств (Австрия / Германия) разработка подобной кастомной платформы с двухконтурным алгоритмом скоринга, CRM-панелью шадхана, галахической логикой, защитой Особых категорий данных (Art. 9 GDPR) и мобильными приложениями оценивается в <strong>8 500 € – 14 000 €</strong> (от 4 до 6 месяцев работы).
+      </p>
+      <p style="margin:0;">
+        <strong>Почему бюджет проекта для общины JRCV составляет всего 2 000 € (экономия более 75%):</strong><br/>
+        1) Использование архитектуры <strong>PWA (Progressive Web App)</strong> вместо разработки двух отдельных нативных приложений под iOS и Android экономит ~5 000 €;<br/>
+        2) Наличие утверждённой продуктовой концепции, галахической логики и готовых UI-макетов сокращает цикл проектирования в 3 раза;<br/>
+        3) Применение специальной льготной общинной ставки разработки (<strong>~18,50 €/час</strong> при трудоёмкости <strong>108 часов</strong> вместо коммерческих 80–110 €/час в Вене).
+      </p>
+    </div>
+
+    <h3>Детальная калькуляция стоимости разработки по модулям (Смета на 2 000 €)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:7%;">№</th>
+          <th style="width:41%;">Наименование модуля / этапа работ</th>
+          <th style="width:32%;">Ключевые результаты (Deliverables)</th>
+          <th style="width:10%;">Трудоёмкость</th>
+          <th style="width:10%;">Стоимость</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td><strong>Архитектура единой БД, безопасность и соответствие GDPR (Ст. 9 ЕС)</strong></td>
+          <td>Схема БД PostgreSQL, ролевая модель (Кандидат, Родитель, Шадхан, Раввин/Админ), шифрование, Explicit Consent GDPR.</td>
+          <td>14 ч</td>
+          <td><strong>250 €</strong></td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td><strong>Компьютерная (Desktop Web) и мобильная PWA-платформа + Мультиязычность</strong></td>
+          <td>Адаптивная вёрстка главной страницы и кабинетов, установка PWA на iOS/Android, переключатель RU / DE / EN / HE.</td>
+          <td>16 ч</td>
+          <td><strong>300 €</strong></td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td><strong>Многоуровневая Анкета Кандидата 2.0 (12 блоков в 3 этапа)</strong></td>
+          <td>Прогрессивный онбординг, условные ветвления (Семейный профиль, статус Коэна, проверка Гета), ползунки «Сейчас vs Через 5 лет».</td>
+          <td>16 ч</td>
+          <td><strong>300 €</strong></td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td><strong>6-этапная система верификации и «Закрытый сейф раввина»</strong></td>
+          <td>SMS/Email авторизация, «Зелёный коридор JRCV», модуль Бирурим, автоудаление документов после проверки, 3 бейджа статуса.</td>
+          <td>14 ч</td>
+          <td><strong>250 €</strong></td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td><strong>Интеллектуальный алгоритм подбора (Matching Engine 100 баллов)</strong></td>
+          <td>Бинарные Hard Filters (Коэн, география, Soft Margin ±2 года/±3 см) + 100-балльный скоринг + объяснение матча и калибровка отказов.</td>
+          <td>19 ч</td>
+          <td><strong>350 €</strong></td>
+        </tr>
+        <tr>
+          <td><strong>6</strong></td>
+          <td><strong>Двухконтурный личный кабинет кандидата (Контур А и Контур Б)</strong></td>
+          <td>Режим Blur-фото с защитой от скачивания, таймер 72 часа (Анти-гостинг), внутренний чат, кнопка «Позвать шадхана», фильтры.</td>
+          <td>13 ч</td>
+          <td><strong>250 €</strong></td>
+        </tr>
+        <tr>
+          <td><strong>7</strong></td>
+          <td><strong>CRM-кабинет Шадхана и Панель Администратора</strong></td>
+          <td>6-колоночная Канбан-доска, Private Shadchan Notes с тегами, Split-Screen сравнение пар, Sequential Pitch, режим Freeze Mode.</td>
+          <td>11 ч</td>
+          <td><strong>200 €</strong></td>
+        </tr>
+        <tr>
+          <td><strong>8</strong></td>
+          <td><strong>Боты уведомлений, JRCV Date Concierge, тестирование и запуск</strong></td>
+          <td>Уведомления Telegram/WhatsApp, триггер «Утро после свидания», гид по кошерным местам Вены с QR-кодом, деплой на сервер и GitHub.</td>
+          <td>5 ч</td>
+          <td><strong>100 €</strong></td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3">ИТОГО ПОЛНАЯ СТОИМОСТЬ РАЗРАБОТКИ ПЛАТФОРМЫ (MVP «ПОД КЛЮЧ»):</td>
+          <td>108 часов</td>
+          <td>2 000 €</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-2" style="margin-top:10px;">
+      <div class="box-card">
+        <h3>График финансирования (Этапы оплаты)</h3>
+        <ul>
+          <li><strong>Этап 1 (Аванс / Старт работ — 35%): 700 €</strong> — развёртывание фронтенда, PWA, БД и Анкеты 2.0.</li>
+          <li><strong>Этап 2 (Ядро и Алгоритм — 40%): 800 €</strong> — сдача алгоритма скоринга, верификации и личного кабинета.</li>
+          <li><strong>Этап 3 (Финал и Запуск — 25%): 500 €</strong> — сдача CRM шадхана, Telegram-уведомлений и финальный запуск.</li>
+        </ul>
+      </div>
+      <div class="box-card">
+        <h3>Модель самоокупаемости инвестиции 2 000 €</h3>
+        <p>
+          Благодаря встроенной механике <strong>«Экономика благодарности (Pay-it-Forward)»</strong> (добровольный Шадханут от созданных семей в размере 200–500 € и спонсорство свиданий по 25 € меценатами и родителями) вложения в размере <strong>2 000 €</strong> полностью возвращаются в бюджет проекта уже после первых <strong>4–6 помолвок</strong> внутри общины JRCV.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

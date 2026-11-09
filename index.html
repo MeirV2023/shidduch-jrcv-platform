@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#B8842D" />
+  <meta name="description" content="SHIDDUCH — Интеллектуальная экосистема еврейского шидуха для создания семьи (JRCV). Современный приватный подбор и традиционный шидух с шадханом." />
+  <title>SHIDDUCH — Еврейский шидух для создания семьи</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. GUEST LANDING VIEW (1:1 REPLICA OF shidux_bez_registracii.png)
+       ========================================================================= -->
+  <div id="guest-view" class="landing-wrapper">
+
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+      <div class="brand-logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <img src="assets/logo-star.png" alt="SHIDDUCH Star of David" />
+        <span class="brand-name">SHIDDUCH</span>
+      </div>
+
+      <nav class="nav-links" aria-label="Основная навигация">
+        <a href="#how-it-works" data-i18n="nav_how">Как это работает</a>
+        <a href="#tracks" onclick="openInfoModal('platform'); return false;" data-i18n="nav_about">О платформе</a>
+        <a href="#security" onclick="openInfoModal('security'); return false;" data-i18n="nav_security">Безопасность</a>
+        <a href="#faq" onclick="openInfoModal('faq'); return false;" data-i18n="nav_faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Dropdown -->
+        <div class="lang-dropdown-wrap">
+          <button type="button" class="lang-btn" id="lang-toggle-btn" aria-label="Выбор языка">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B2311" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span id="current-lang-label">RU</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3B2311" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="lang-menu" id="lang-menu">
+            <button type="button" class="lang-option active" onclick="setLanguage('RU')"><span>Русский</span><span>RU</span></button>
+            <button type="button" class="lang-option" onclick="setLanguage('DE')"><span>Deutsch</span><span>DE</span></button>
+            <button type="button" class="lang-option" onclick="setLanguage('EN')"><span>English</span><span>EN</span></button>
+            <button type="button" class="lang-option" onclick="setLanguage('HE')"><span>עברית</span><span>HE</span></button>
+          </div>
+        </div>
+
+        <button type="button" class="btn-login" onclick="openLoginModal()" data-i18n="btn_login">Войти</button>
+        <button type="button" class="btn-gold btn-nav-create" onclick="openRegistrationModal()" data-i18n="btn_create_nav">Создать профиль</button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title" data-i18n="hero_title">
+          Еврейский шидух<br />для создания семьи
+        </h1>
+        <div class="hero-divider"></div>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Надёжная платформа, которая помогает<br />встретить достойного партнёра и построить семью.
+        </p>
+        <div class="hero-cta-group">
+          <button type="button" class="btn-gold btn-hero-primary" onclick="openRegistrationModal()">
+            <span data-i18n="btn_create_hero">Создать профиль</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="13 6 19 12 13 18"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="btn-hero-secondary" onclick="openInfoModal('how')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B68027" stroke-width="2.2" stroke-linejoin="round">
+              <polygon points="6 4 20 12 6 20 6 4"></polygon>
+            </svg>
+            <span data-i18n="btn_how_hero">Как это работает</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two Main Track Cards (Контур А и Контур Б) -->
+    <section id="tracks" class="tracks-section" aria-label="Форматы шидуха">
+      <!-- Track A: Modern Private Shidduch -->
+      <button type="button" class="track-card" onclick="openTrackModal('modern')">
+        <div class="track-icon">
+          <svg width="54" height="46" viewBox="0 0 56 48" fill="none" stroke="#BE892F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="6" width="40" height="27" rx="3.5"></rect>
+            <path d="M3 37h50l-3 5H6l-3-5z"></path>
+          </svg>
+        </div>
+        <div class="track-divider"></div>
+        <div class="track-text">
+          <div class="track-title" data-i18n="track_a_title">Современный приватный шидух</div>
+          <div class="track-desc" data-i18n="track_a_desc">Подбор с учётом ваших предпочтений</div>
+        </div>
+        <div class="track-arrow">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+      </button>
+
+      <!-- Track B: Traditional Shidduch with Shadchan -->
+      <button type="button" class="track-card" onclick="openTrackModal('traditional')">
+        <div class="track-icon">
+          <svg width="56" height="46" viewBox="0 0 60 48" fill="none" stroke="#BE892F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="30" cy="14" r="6.5"></circle>
+            <path d="M18 38c0-6.5 5.4-11 12-11s12 4.5 12 11"></path>
+            <circle cx="14" cy="18" r="5"></circle>
+            <path d="M5 38c0-5 4-9 9.5-9"></path>
+            <circle cx="46" cy="18" r="5"></circle>
+            <path d="M55 38c0-5-4-9-9.5-9"></path>
+          </svg>
+        </div>
+        <div class="track-divider"></div>
+        <div class="track-text">
+          <div class="track-title" data-i18n="track_b_title">Традиционный шидух с шадханом</div>
+          <div class="track-desc" data-i18n="track_b_desc">Личное сопровождение опытного шадхана</div>
+        </div>
+        <div class="track-arrow">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+      </button>
+    </section>
+
+    <!-- Four Feature Pills Row -->
+    <section id="security" class="features-row" aria-label="Преимущества платформы">
+      <div class="feature-pill" onclick="openInfoModal('verified')">
+        <div class="feature-pill-icon">
+          <svg width="40" height="42" viewBox="0 0 44 46" fill="none" stroke="#BE892F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 4L6 10.5v11.5C6 33.2 12.8 41.3 22 44c9.2-2.7 16-10.8 16-22V10.5L22 4z"></path>
+            <polyline points="15.5 23 20 27.5 29 18.5"></polyline>
+          </svg>
+        </div>
+        <span class="feature-pill-label" data-i18n="feat_1">Проверенные анкеты</span>
+      </div>
+
+      <div class="feature-pill" onclick="openInfoModal('privacy')">
+        <div class="feature-pill-icon">
+          <svg width="40" height="42" viewBox="0 0 44 46" fill="none" stroke="#BE892F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="20" width="26" height="21" rx="4"></rect>
+            <path d="M14 20v-6a8 8 0 0 1 16 0v6"></path>
+            <circle cx="22" cy="29" r="2.2"></circle>
+            <line x1="22" y1="31.2" x2="22" y2="35.5"></line>
+          </svg>
+        </div>
+        <span class="feature-pill-label" data-i18n="feat_2">Конфиденциальность</span>
+      </div>
+
+      <div class="feature-pill" onclick="openInfoModal('algorithm')">
+        <div class="feature-pill-icon">
+          <svg width="42" height="42" viewBox="0 0 46 46" fill="none" stroke="#BE892F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="21" cy="25" r="15"></circle>
+            <circle cx="21" cy="25" r="9.5"></circle>
+            <circle cx="21" cy="25" r="4"></circle>
+            <line x1="21" y1="25" x2="38" y2="8"></line>
+            <polyline points="31 8 38 8 38 15"></polyline>
+          </svg>
+        </div>
+        <span class="feature-pill-label" data-i18n="feat_3">Умный подбор</span>
+      </div>
+
+      <div class="feature-pill" onclick="openInfoModal('shadchan')">
+        <div class="feature-pill-icon">
+          <svg width="46" height="40" viewBox="0 0 52 44" fill="none" stroke="#BE892F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 14l7-5 8 4 7-4 8 6-6 11-11 9-12-9-7-12z"></path>
+            <path d="M23 18l-4 4c-1.5 1.5-1.5 4 0 5.5l4 4"></path>
+            <path d="M21 25l8 7"></path>
+            <path d="M25 21l8 7"></path>
+          </svg>
+        </div>
+        <span class="feature-pill-label" data-i18n="feat_4">Поддержка шадхана</span>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-section">
+      <div class="section-heading-wrap">
+        <div class="heading-line left"></div>
+        <h2 class="section-heading" data-i18n="how_heading">Как это работает</h2>
+        <div class="heading-line right"></div>
+      </div>
+
+      <div class="steps-row">
+        <div class="step-item" onclick="openRegistrationModal()">
+          <img src="assets/step-1.png" alt="Шаг 1" class="step-badge-img" />
+          <div class="step-label" data-i18n="step_1_text">
+            <strong>1. Заполните</strong><br />&nbsp;&nbsp;&nbsp;&nbsp;анкету
+          </div>
+        </div>
+
+        <div class="step-arrow" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="13 6 19 12 13 18"></polyline>
+          </svg>
+        </div>
+
+        <div class="step-item" onclick="openInfoModal('algorithm')">
+          <img src="assets/step-2.png" alt="Шаг 2" class="step-badge-img" />
+          <div class="step-label" data-i18n="step_2_text">
+            <strong>2. Получите</strong><br />&nbsp;&nbsp;&nbsp;&nbsp;подходящие<br />&nbsp;&nbsp;&nbsp;&nbsp;предложения
+          </div>
+        </div>
+
+        <div class="step-arrow" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="13 6 19 12 13 18"></polyline>
+          </svg>
+        </div>
+
+        <div class="step-item" onclick="switchToDashboard()">
+          <img src="assets/step-3.png" alt="Шаг 3" class="step-badge-img" />
+          <div class="step-label" data-i18n="step_3_text">
+            <strong>3. Познакомьтесь</strong><br />&nbsp;&nbsp;&nbsp;&nbsp;и постройте семью
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <section class="cta-banner-wrap">
+      <div class="cta-banner">
+        <h2 class="cta-banner-title" data-i18n="cta_bottom_title">Сделайте первый шаг к своей семье</h2>
+        <button type="button" class="btn-gold btn-cta-bottom" onclick="openRegistrationModal()">
+          <span data-i18n="btn_fill_form">Заполнить анкету</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="13 6 19 12 13 18"></polyline>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- =========================================================================
+       2. LOGGED-IN DASHBOARD VIEW (1:1 REPLICA OF shidoz_vhod.png)
+       ========================================================================= -->
+  <div id="dashboard-view" class="dashboard-wrapper" aria-label="Личный кабинет кандидата">
+    <!-- Left Sidebar -->
+    <aside class="dash-sidebar">
+      <div>
+        <div class="dash-brand">
+          <img src="assets/logo-star.png" alt="SHIDDUCH Logo" />
+          <div class="dash-brand-title">SHIDDUCH</div>
+          <div class="dash-brand-sub">Find Your Bashert</div>
+        </div>
+
+        <nav class="dash-nav">
+          <div class="dash-nav-item active">
+            <div class="dash-nav-item-left">
+              <span>🏠</span><span>Главная</span>
+            </div>
+          </div>
+          <div class="dash-nav-item" onclick="openInfoModal('filters')">
+            <div class="dash-nav-item-left">
+              <span>🔍</span><span>Поиск</span>
+            </div>
+          </div>
+          <div class="dash-nav-item" onclick="openCandidateModal('rachel')">
+            <div class="dash-nav-item-left">
+              <span>✨</span><span>Рекомендации</span>
+            </div>
+          </div>
+          <div class="dash-nav-item" onclick="openCandidateModal('rachel')">
+            <div class="dash-nav-item-left">
+              <span>🤍</span><span>Мои матчи</span>
+            </div>
+            <span class="dash-badge">3</span>
+          </div>
+          <div class="dash-nav-item" onclick="openInfoModal('messages')">
+            <div class="dash-nav-item-left">
+              <span>💬</span><span>Сообщения</span>
+            </div>
+            <span class="dash-badge">5</span>
+          </div>
+          <div class="dash-nav-item" onclick="openInfoModal('shadchan')">
+            <div class="dash-nav-item-left">
+              <span>👥</span><span>Мой шадхан</span>
+            </div>
+          </div>
+          <div class="dash-nav-item" onclick="openRegistrationModal()">
+            <div class="dash-nav-item-left">
+              <span>👤</span><span>Мой профиль</span>
+            </div>
+          </div>
+          <div class="dash-nav-item" onclick="switchToLanding()">
+            <div class="dash-nav-item-left">
+              <span>⬅️</span><span>Выйти на главную</span>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <img src="assets/sidebar-jerusalem.png" alt="Иерусалим" class="dash-sidebar-art" />
+    </aside>
+
+    <!-- Main Content -->
+    <div class="dash-main">
+      <!-- Topbar -->
+      <header class="dash-topbar">
+        <div class="dash-mode-tabs">
+          <button type="button" id="tab-modern" class="dash-mode-tab active" onclick="setDashboardMode('modern')">
+            <span style="font-size:24px;">💻</span>
+            <div>
+              <div class="dash-mode-tab-title">Современный шидух</div>
+              <div class="dash-mode-tab-sub">Алгоритм и рекомендации</div>
+            </div>
+          </button>
+          <button type="button" id="tab-trad" class="dash-mode-tab" onclick="setDashboardMode('trad')">
+            <span style="font-size:24px;">👥</span>
+            <div>
+              <div class="dash-mode-tab-title">Традиционный шидух</div>
+              <div class="dash-mode-tab-sub">С сопровождением шадхана</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="dash-user-area">
+          <div class="dash-bell" onclick="openInfoModal('messages')">
+            <span style="font-size:24px;">🔔</span>
+            <span class="dash-bell-count">3</span>
+          </div>
+          <div class="dash-user-pill" onclick="switchToLanding()" title="Нажмите, чтобы вернуться на страницу без регистрации">
+            <img src="assets/avatar-david.png" alt="Давид" />
+            <span>Давид ⌄</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="dash-body">
+        <!-- Left Content Column -->
+        <div>
+          <div class="dash-welcome-banner">
+            <h1 class="dash-welcome-title">Добро пожаловать, Давид!</h1>
+            <p class="dash-welcome-sub">Продолжим путь к созданию вашей семьи</p>
+          </div>
+
+          <div class="dash-quick-actions">
+            <div class="dash-action-card" onclick="openCandidateModal('rachel')">
+              <span style="font-size:32px;">🎯</span>
+              <div>
+                <div style="font-weight:600; font-size:16px;">Новые<br/>рекомендации</div>
+              </div>
+              <span class="dash-action-badge">3</span>
+            </div>
+            <div class="dash-action-card" onclick="openInfoModal('filters')">
+              <span style="font-size:32px;">🔍</span>
+              <div>
+                <div style="font-weight:600; font-size:16px;">Поиск<br/>кандидатов</div>
+              </div>
+            </div>
+            <div class="dash-action-card" onclick="openInfoModal('concierge')">
+              <span style="font-size:32px;">📅</span>
+              <div>
+                <div style="font-weight:600; font-size:16px;">Запланировать<br/>встречу</div>
+              </div>
+            </div>
+            <div class="dash-action-card" onclick="openInfoModal('shadchan')">
+              <span style="font-size:32px;">🤝</span>
+              <div>
+                <div style="font-weight:600; font-size:16px;">Связаться<br/>с шадханом</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-section-head">
+            <h2 class="dash-section-title">Рекомендованные для вас</h2>
+            <span class="dash-see-all" onclick="openInfoModal('filters')">Смотреть все →</span>
+          </div>
+
+          <div class="candidates-grid">
+            <!-- Candidate 1: Рахель -->
+            <div class="candidate-card" onclick="openCandidateModal('rachel')">
+              <div class="candidate-photo-wrap">
+                <img src="assets/cand-rachel.png" alt="Рахель, 29" />
+              </div>
+              <div class="candidate-match-pill">
+                <span class="match-ring"></span>
+                <span>95% совместимость</span>
+              </div>
+              <div class="candidate-info">
+                <div class="candidate-name">Рахель, 29</div>
+                <div class="candidate-meta">📍 Вена, Австрия</div>
+                <div class="candidate-meta">💼 Учитель</div>
+                <div class="candidate-tags">
+                  <span class="candidate-tag">Семья</span>
+                  <span class="candidate-tag">Тора</span>
+                  <span class="candidate-tag">Путешествия</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Candidate 2: Мириам -->
+            <div class="candidate-card" onclick="openCandidateModal('miriam')">
+              <div class="candidate-photo-wrap">
+                <img src="assets/cand-miriam.png" alt="Мириам, 27" />
+              </div>
+              <div class="candidate-match-pill">
+                <span class="match-ring"></span>
+                <span>92% совместимость</span>
+              </div>
+              <div class="candidate-info">
+                <div class="candidate-name">Мириам, 27</div>
+                <div class="candidate-meta">📍 Вена, Австрия</div>
+                <div class="candidate-meta">💼 Дизайнер</div>
+                <div class="candidate-tags">
+                  <span class="candidate-tag">Творчество</span>
+                  <span class="candidate-tag">Волонтёрство</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Candidate 3: Эстер -->
+            <div class="candidate-card" onclick="openCandidateModal('esther')">
+              <div class="candidate-photo-wrap">
+                <img src="assets/cand-esther.png" alt="Эстер, 31" />
+              </div>
+              <div class="candidate-match-pill">
+                <span class="match-ring"></span>
+                <span>89% совместимость</span>
+              </div>
+              <div class="candidate-info">
+                <div class="candidate-name">Эстер, 31</div>
+                <div class="candidate-meta">📍 Вена, Австрия</div>
+                <div class="candidate-meta">💼 Маркетолог</div>
+                <div class="candidate-tags">
+                  <span class="candidate-tag">Спорт</span>
+                  <span class="candidate-tag">Культура</span>
+                  <span class="candidate-tag">Семья</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Candidate 4: Лея -->
+            <div class="candidate-card" onclick="openCandidateModal('leah')">
+              <div class="candidate-photo-wrap">
+                <img src="assets/cand-leah.png" alt="Лея, 28" />
+              </div>
+              <div class="candidate-match-pill">
+                <span class="match-ring"></span>
+                <span>87% совместимость</span>
+              </div>
+              <div class="candidate-info">
+                <div class="candidate-name">Лея, 28</div>
+                <div class="candidate-meta">📍 Европа (DACH)</div>
+                <div class="candidate-meta">💼 Психолог</div>
+                <div class="candidate-tags">
+                  <span class="candidate-tag">Развитие</span>
+                  <span class="candidate-tag">Музыка</span>
+                  <span class="candidate-tag">Дети</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Sidebar Column -->
+        <div class="dash-right-col">
+          <div class="dash-widget">
+            <div class="dash-widget-title">Ваш профиль</div>
+            <div class="progress-ring-row">
+              <div class="progress-circle">
+                <div class="progress-circle-inner">85%</div>
+              </div>
+              <div style="font-size:19px; font-weight:500; line-height:1.35;">
+                Профиль<br/>заполнен
+              </div>
+            </div>
+            <button type="button" class="btn-gold" style="width:100%; height:46px; font-size:16.5px;" onclick="openRegistrationModal()">
+              <span>Дополнить профиль</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="dash-widget">
+            <div class="dash-widget-title">🛡️ Верификация</div>
+            <div class="verif-list">
+              <div class="verif-item"><span>✅</span><span>Личность подтверждена</span></div>
+              <div class="verif-item"><span>✅</span><span>Данные проверены</span></div>
+              <div class="verif-item"><span>⭕</span><span>Еврейский статус (в процессе)</span></div>
+            </div>
+          </div>
+
+          <div class="dash-widget">
+            <div class="dash-widget-title">📅 Следующий шаг</div>
+            <p style="font-size:16px; line-height:1.45; color:#3B2510; margin-bottom:18px;">
+              ✨ 3 новых рекомендации ждут вашего ответа (таймер 72 часа)
+            </p>
+            <button type="button" class="btn-gold" style="width:100%; height:46px; font-size:16.5px;" onclick="openCandidateModal('rachel')">
+              <span>Посмотреть</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       3. INTERACTIVE MODALS (Registration 2.0, Login, Candidate Match, Info)
+       ========================================================================= -->
+
+  <!-- Multi-Step Registration & Questionnaire 2.0 Modal -->
+  <dialog id="modal-register" class="shidduch-modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="reg-modal-title">Создание анкеты кандидата</h3>
+      <button type="button" class="modal-close" onclick="closeModal('modal-register')" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="wizard-steps-bar" id="wizard-dots">
+        <div class="wizard-step-dot active"></div>
+        <div class="wizard-step-dot"></div>
+        <div class="wizard-step-dot"></div>
+        <div class="wizard-step-dot"></div>
+      </div>
+
+      <!-- Step 1: Role & Format Selection (pwa_1.png screens 3 & 4) -->
+      <div class="reg-step" id="reg-step-1">
+        <p style="font-size:15px; color:#5C4328; margin-bottom:14px;">
+          Шаг 1 из 4 • <strong>Ролевая модель и выбор контура шидуха</strong>
+        </p>
+        <label class="form-label">Кто заполняет анкету?</label>
+        <div class="role-cards-grid">
+          <div class="choice-card selected" id="role-self" onclick="selectRole('self')">
+            <div class="choice-card-title">👤 Регистрируюсь лично</div>
+            <div class="choice-card-sub">Ищу пару для себя, управляю анкетой самостоятельно</div>
+          </div>
+          <div class="choice-card" id="role-parent" onclick="selectRole('parent')">
+            <div class="choice-card-title">👪 Семейный профиль</div>
+            <div class="choice-card-sub">Родитель / родственник помогает кандидату (бейдж в профиле)</div>
+          </div>
+        </div>
+
+        <label class="form-label">Выберите формат шидуха (общая база JRCV):</label>
+        <div class="role-cards-grid">
+          <div class="choice-card selected" id="track-self" onclick="selectTrackChoice('modern')">
+            <div class="choice-card-title">💻 Современный приватный</div>
+            <div class="choice-card-sub">3–5 персональных рекомендаций в день, контроль видимости фото</div>
+          </div>
+          <div class="choice-card" id="track-shadchan" onclick="selectTrackChoice('trad')">
+            <div class="choice-card-title">🤝 Традиционный с шадханом</div>
+            <div class="choice-card-sub">Анонимные резюме, проверка рекомендаций (Бирурим), участие шадхана</div>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Имя (публичное в Контуре А)</label>
+            <input type="text" class="form-input" value="Давид" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Фамилия (🔒 видна только шадхану)</label>
+            <input type="text" class="form-input" placeholder="Скрыта до взаимного согласия" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Возраст и Рост (см)</label>
+            <input type="text" class="form-input" value="32 года • 180 см" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Город проживания и мобильность</label>
+            <select class="form-select">
+              <option>Вена, Австрия (готов к релокации в DACH)</option>
+              <option>Вена, Австрия (только свой город)</option>
+              <option>Германия / Швейцария (готов к переезду)</option>
+              <option>Израиль / Планирую алию</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; margin-top:18px;">
+          <button type="button" class="btn-gold" style="height:46px; padding:0 32px; font-size:16px;" onclick="goToRegStep(2)">
+            Далее: Еврейская идентичность →
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Halachic Status & Verification (pwa_regisration.png screen 4) -->
+      <div class="reg-step" id="reg-step-2" style="display:none;">
+        <p style="font-size:15px; color:#5C4328; margin-bottom:14px;">
+          Шаг 2 из 4 • <strong>Еврейская идентичность и Галахическая логика</strong>
+        </p>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Еврейское происхождение</label>
+            <select class="form-select">
+              <option>Еврей(ка) по матери (оба родителя евреи)</option>
+              <option>Еврей(ка) по матери (отец нееврей)</option>
+              <option>Прошёл(ла) ортодоксальный гиюр</option>
+              <option>Требует уточнения (консультация раввина)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Статус в коленах Израиля (для мужчин)</label>
+            <select class="form-select">
+              <option>Исраэль (обычный статус)</option>
+              <option>Коэн (включает галахический фильтр)</option>
+              <option>Леви</option>
+              <option>Не знаю точно (уточнить у раввина)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Культурно-этнические корни семьи</label>
+            <select class="form-select">
+              <option>Ашкеназские</option>
+              <option>Бухарские</option>
+              <option>Горские</option>
+              <option>Грузинские</option>
+              <option>Сефардские / Смешанные</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Семейное положение и Гет</label>
+            <select class="form-select">
+              <option>Не женат / Не замужем (детей нет)</option>
+              <option>В разводе — Гет получен на руки</option>
+              <option>В разводе — был только гражданский брак</option>
+              <option>В разводе — нужна помощь раввина с Гетом</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Способ верификации («Щит общины JRCV»)</label>
+          <select class="form-select">
+            <option>🟢 Зелёный коридор: меня лично знают в общине JRCV Вена</option>
+            <option>📞 Поручительство (Бирурим): контакт раввина или 2 членов общины</option>
+            <option>🔒 Закрытый сейф раввина: загрузка Ктубы родителей / справки (удаляется после проверки)</option>
+          </select>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:18px;">
+          <button type="button" class="btn-login" onclick="goToRegStep(1)">← Назад</button>
+          <button type="button" class="btn-gold" style="height:46px; padding:0 32px; font-size:16px;" onclick="goToRegStep(3)">
+            Далее: Религиозный вектор →
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Religious Vector "Now vs In 5 Years" (35 pts in Matching Engine) -->
+      <div class="reg-step" id="reg-step-3" style="display:none;">
+        <p style="font-size:15px; color:#5C4328; margin-bottom:14px;">
+          Шаг 3 из 4 • <strong>Матрица «Где я сейчас vs. Какой дом я хочу через 5 лет» (35 баллов алгоритма)</strong>
+        </p>
+
+        <div class="slider-box">
+          <div class="slider-box-head">
+            <span>🕯️ Соблюдение Шаббата</span>
+            <span style="color:#B47E24;">Сейчас: 3/5 → Через 5 лет: 4/5</span>
+          </div>
+          <input type="range" min="1" max="5" value="4" style="width:100%; accent-color:#B8842D;" />
+          <div style="display:flex; justify-content:space-between; font-size:12px; color:#6B533B; margin-top:4px;">
+            <span>1: Выходной</span><span>3: Свечи и Кидуш дома</span><span>5: Полный Шаббат по Галахе</span>
+          </div>
+        </div>
+
+        <div class="slider-box">
+          <div class="slider-box-head">
+            <span>🍷 Кашрут и кухня дома</span>
+            <span style="color:#B47E24;">Сейчас: 4/5 → Через 5 лет: 5/5</span>
+          </div>
+          <input type="range" min="1" max="5" value="5" style="width:100%; accent-color:#B8842D;" />
+          <div style="display:flex; justify-content:space-between; font-size:12px; color:#6B533B; margin-top:4px;">
+            <span>1: Не соблюдаю</span><span>3: Кошерный дом</span><span>5: Строгий кашрут и экшер</span>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Финансово-ролевая модель семьи</label>
+            <select class="form-select">
+              <option>Партнёрская: оба развиваемся и строим семью</option>
+              <option>Традиционная: муж — опора, жена — уют и дети</option>
+              <option>Модель Торы: фокус на изучении Торы</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Образование будущих детей</label>
+            <select class="form-select">
+              <option>Еврейская школа / садик (напр. ZPC Вена)</option>
+              <option>Частная школа + воскресная еврейская</option>
+              <option>Решим вместе с партнёром</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:18px;">
+          <button type="button" class="btn-login" onclick="goToRegStep(2)">← Назад</button>
+          <button type="button" class="btn-gold" style="height:46px; padding:0 32px; font-size:16px;" onclick="goToRegStep(4)">
+            Далее: Приватность и фото →
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4: Photo Privacy, Wishes & GDPR Art. 9 -->
+      <div class="reg-step" id="reg-step-4" style="display:none;">
+        <p style="font-size:15px; color:#5C4328; margin-bottom:14px;">
+          Шаг 4 из 4 • <strong>Приватность фотографий, «Хотелки» и защита GDPR (Австрия / ЕС)</strong>
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">Кто может видеть моё фото? (Защита от «витрины» в Вене)</label>
+          <select class="form-select">
+            <option>🔒 Размыто (Blur) — открывается только после взаимного интереса</option>
+            <option>🤝 Только по согласованию с шадханом JRCV</option>
+            <option>👁️ Верифицированным кандидатам противоположного пола</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Приоритеты поиска («Обязательные» vs «Желательные»):</label>
+          <div class="chip-group">
+            <span class="tag-chip selected" onclick="this.classList.toggle('selected')">Обязательно: 25–34 года</span>
+            <span class="tag-chip selected" onclick="this.classList.toggle('selected')">Обязательно: Соблюдение Шаббата</span>
+            <span class="tag-chip selected" onclick="this.classList.toggle('selected')">Обязательно: Хочет детей</span>
+            <span class="tag-chip" onclick="this.classList.toggle('selected')">Желательно: Вена / Европа (DACH)</span>
+            <span class="tag-chip" onclick="this.classList.toggle('selected')">Желательно: Высшее образование</span>
+          </div>
+        </div>
+
+        <div style="background:#F7SVE8; border:1px solid #E3CFAF; border-radius:12px; padding:12px; font-size:13px; color:#4A3520; margin-bottom:16px;">
+          <label style="display:flex; gap:10px; align-items:flex-start; margin-bottom:8px; cursor:pointer;">
+            <input type="checkbox" checked style="margin-top:3px;" />
+            <span><strong>Явное согласие (Ст. 9 GDPR ЕС):</strong> даю согласие общине JRCV на обработку данных о вероисповедании и происхождении исключительно для подбора пары.</span>
+          </label>
+          <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" checked style="margin-top:3px;" />
+            <span><strong>Правило 72 часов и этика:</strong> обязуюсь отвечать на предложения в течение 72 часов и не передавать чужие фото третьим лицам.</span>
+          </label>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:18px;">
+          <button type="button" class="btn-login" onclick="goToRegStep(3)">← Назад</button>
+          <button type="button" class="btn-gold" style="height:46px; padding:0 32px; font-size:16px;" onclick="completeRegistration()">
+            Завершить и перейти в кабинет ✓
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Login Modal -->
+  <dialog id="modal-login" class="shidduch-modal" style="max-width:480px;">
+    <div class="modal-header">
+      <h3 class="modal-title">Вход в SHIDDUCH</h3>
+      <button type="button" class="modal-close" onclick="closeModal('modal-login')" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Телефон или Email</label>
+        <input type="text" class="form-input" value="+43 660 123 45 67" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Код подтверждения (SMS / Telegram-бот JRCV)</label>
+        <input type="text" class="form-input" value="770 • • •" />
+      </div>
+      <button type="button" class="btn-gold" style="width:100%; height:48px; font-size:17px; margin-top:8px;" onclick="closeModal('modal-login'); switchToDashboard();">
+        Войти в личный кабинет (Давид) →
+      </button>
+      <div style="text-align:center; margin-top:14px;">
+        <button type="button" style="color:#A4701E; font-size:14.5px; font-weight:600;" onclick="closeModal('modal-login'); openRegistrationModal();">
+          Ещё нет анкеты? Создать профиль за 3 минуты
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Candidate Compatibility Modal (from pwa_1.png 93%/95% screen) -->
+  <dialog id="modal-candidate" class="shidduch-modal" style="max-width:560px;">
+    <div class="modal-header">
+      <h3 class="modal-title" id="cand-modal-name">Анализ совместимости: Рахель, 29</h3>
+      <button type="button" class="modal-close" onclick="closeModal('modal-candidate')" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex; align-items:center; gap:20px; margin-bottom:18px;">
+        <img id="cand-modal-img" src="assets/cand-rachel.png" alt="Кандидат" style="width:96px; height:96px; border-radius:20px; object-fit:cover; border:2px solid #C9953D;" />
+        <div>
+          <div style="font-size:32px; font-weight:700; color:#2E9B4E;" id="cand-modal-score">95% совместимость</div>
+          <div style="font-size:15px; color:#4A3520;" id="cand-modal-meta">📍 Вена, Австрия • Учитель • Община JRCV</div>
+          <div style="font-size:13px; color:#2E9B4E; font-weight:600; margin-top:4px;">✅ Еврейский статус проверен раввином</div>
+        </div>
+      </div>
+
+      <div style="background:#FCF7EE; border:1px solid #E6D4B8; border-radius:16px; padding:16px; margin-bottom:16px;">
+        <div style="font-weight:700; margin-bottom:10px; font-size:16px;">Почему этот матч подходит вам (Детерминированный скоринг):</div>
+        <div style="display:flex; flex-direction:column; gap:7px; font-size:14.5px;">
+          <div>✅ <strong>Религиозный вектор (35/35):</strong> Оба стремятся к соблюдающему дому (Шаббат, Кашрут)</div>
+          <div>✅ <strong>Модель семьи (24/25):</strong> Ориентация на брак в ближайший год, дети в еврейской школе</div>
+          <div>✅ <strong>Культурный код и языки (15/15):</strong> Русский, Немецкий, Иврит; община JRCV Вена</div>
+          <div>✅ <strong>Психотип и интересы (13/15):</strong> Семейный уют, изучение Торы, путешествия</div>
+          <div style="color:#9E6B18; margin-top:4px;">ℹ️ <strong>Зона внимания (компромисс):</strong> Рахель предпочитает остаться в Вене (вы указали готовность)</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px;">
+        <button type="button" class="btn-gold" style="flex:1; height:48px; font-size:16px;" onclick="alert('Запрос отправлен! У кандидата есть 72 часа на ответ. При взаимном интересе откроется чат и гид JRCV Date Concierge.'); closeModal('modal-candidate');">
+          💌 Предложить знакомство (72ч)
+        </button>
+        <button type="button" class="btn-login" style="height:48px;" onclick="alert('Ваш шадхан Рав Ицхак получил запрос на наведение справок (Бирурим) по этому профилю.'); closeModal('modal-candidate');">
+          🤝 Спросить шадхана
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Universal Info / Track Drawer Modal -->
+  <dialog id="modal-info" class="shidduch-modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="info-modal-title">О платформе SHIDDUCH</h3>
+      <button type="button" class="modal-close" onclick="closeModal('modal-info')" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body" id="info-modal-content"></div>
+  </dialog>
+
+  <!-- Floating Demo Switcher Pill (to easily test both mockups: Guest & Logged-In) -->
+  <div class="demo-switcher-pill">
+    <span id="demo-pill-label">Режим просмотра: Гостевая (без регистрации)</span>
+    <button type="button" id="demo-pill-btn" onclick="toggleDemoView()">Открыть Кабинет Давида →</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
